@@ -2,7 +2,7 @@
 =============================================================================================================
 **Stored Procedure: Load Bronze Layer (source -> Bronze)**
 =============================================================================================================
-**Script pupose:**
+**Script pupose**:
 
 This stored procedure loads data into the 'bronze' schema from external CSV files.
 It perform the following actions:
@@ -10,13 +10,13 @@ It perform the following actions:
 - Truncate the bronze table before loading data
 - Uses the BULK INSERT command to load date from CSV file to Bronze tables.
 
-**Parameters:**
+**Parameters**:
 	None.
 This stored procedure does not accept any parameters or return any value.
 
-**Usage Example:**
+**Usage Example**:
 
-**EXEC** Bronze.load_bronze;
+EXEC Bronze.load_bronze;
 
 =================================================================================================================
 */
