@@ -50,7 +50,7 @@ DROP TABLE Bronze.crm_sales_info;
 	 sls_due_date		INT,
 	 sls_sales			INT,
 	 sls_quantity		INT,
-	 sls_price			INT,
+	 sls_price			INT
 
  )
  --erp cust table
