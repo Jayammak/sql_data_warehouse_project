@@ -10,7 +10,7 @@
 - **Columns:**
   
 
-|     Column Name    |    Data Type  |                                      Description                                              |
+|     Column Name    |    Data Type  |Description                                                                                    |
 |--------------------|---------------|-----------------------------------------------------------------------------------------------|
 | customer_key       | INT           | Surrogate key uniquely identifying each customer record in the dimension table.               |
 | customer_id        | INT           | Unique numerical identifier assigned to each customer.                                        |
@@ -22,7 +22,6 @@
 | gender             | NVARCHAR(50)  | The gender of the customer (e.g., 'Male', 'Female', 'n/a').                                   |
 | birthdate          | DATE          | The birth date of the customer formatted as YYYY-MM-DD.                                       |
 | create_date        | DATE          | The date when the customer record was created in the system.                                  |
-|--------------------|---------------|-----------------------------------------------------------------------------------------------|
 
 ---
 
@@ -31,8 +30,9 @@
 - **Columns:**
 
 
-|     Column name    |   Data Type  |                                            Description                                           |
-|:------------------:|:------------:|:------------------------------------------------------------------------------------------------:|
+
+|Column Name         |Data Type     |Description                                                                                       |
+|--------------------|--------------|--------------------------------------------------------------------------------------------------|
 | product_key        | INT          | Surrogate key uniquely identify each product crecord in product dimension table.                 |
 | product_id         | INT          | Unique nummerical identifier assigned to each product used for tracking and referencing.         |
 | Product_number     | NVARCHAR(50) | Alphanumerical identifier representing the product,  often used for categarization or inventory. |
@@ -44,16 +44,14 @@
 | product_cost       | INT          | The price of the product                                                                         |
 | product_line       | NVARCHAR(50) | The specific product line or series to which the product belongs (e.g., 'Road', 'Mountain')      |
 | product_start_date | DATE         | The date when the product available for the sales                                                |
-|--------------------|---------------|-------------------------------------------------------------------------------------------------|
-  
----
+
 
 ### 3. **gold.fact_sales**
 - **Purpose:** Stores transactional sales data for analytical purposes.
 - **Columns:**
 
-|     Column name    |   Data Type  |                                         Description                                         |
-|:------------------:|:------------:|:-------------------------------------------------------------------------------------------:|
+|Column Name         |Data Type     |Description                                                                                  |
+|--------------------|--------------|---------------------------------------------------------------------------------------------|
 | order_number       | NVARCHAR(50) | A Uniqure alphanumeric identifier for each sales order (e.g., 'SO54496')                    |
 | product_key        | INT          | Surrogate key linking the order to the product dimension table.                             |
 | customer_key       | INT          | Surrogate key linking the order to the customer dimension table.                            |
@@ -65,8 +63,6 @@
 | price              | INT          | The price per unit of the product for the line item, in whole currency unit                 |
 | product_line       | NVARCHAR(50) | The specific product line or series to which the product belongs (e.g., 'Road', 'Mountain') |
 | product_start_date | DATE         | The date when the product available for the sales                                           |
-|--------------------|--------------|---------------------------------------------------------------------------------------------|
-  
 
 
 
