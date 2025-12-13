@@ -3,7 +3,7 @@
 DDL Script: Crete Bronze Layer
 ========================================================================
 
-Script Purpose: 
+**Script Purpose:**
 This script creates tables in the 'Bronze' schema, dropping exixying
 tables if they already exists.
 Run this script to re_define the DDL Structure of 'Bronze Tables
@@ -11,7 +11,7 @@ Run this script to re_define the DDL Structure of 'Bronze Tables
 =========================================================================
 */
 
--- cust info
+
 IF OBJECT_ID ('Bronze.crm_cust_info', 'U') IS NOT NULL
 DROP TABLE Bronze.crm_cust_info;
 
@@ -24,7 +24,7 @@ DROP TABLE Bronze.crm_cust_info;
 	 cst_gender				NVARCHAR(50),
 	 cst_create_date		NVARCHAR(50)
  )
- -- product
+
 IF OBJECT_ID ('Bronze.crm_prd_info', 'U') IS NOT NULL
 DROP TABLE Bronze.crm_prd_info;
 
@@ -37,7 +37,7 @@ DROP TABLE Bronze.crm_prd_info;
 	 prd_start_date DATETIME,
 	 prd_end_date	DATETIME
  )
- -- sales table
+
  IF OBJECT_ID ('Bronze.crm_sales_info', 'U') IS NOT NULL
 DROP TABLE Bronze.crm_sales_info;
 
@@ -53,7 +53,7 @@ DROP TABLE Bronze.crm_sales_info;
 	 sls_price			INT
 
  )
- --erp cust table
+
  IF OBJECT_ID ('Bronze.erp_cust_az12', 'U') IS NOT NULL
  DROP TABLE Bronze.erp_cust_az12;
 
@@ -62,19 +62,17 @@ cid		NVARCHAR(50),
 bdate	DATE,
 gen		NVARCHAR (50)
 )
---erp loc
+
  IF OBJECT_ID ('Bronze.erp_loc_a101', 'U') IS NOT NULL
  DROP TABLE Bronze.erp_loc_a101;
-
 
 CREATE TABLE Bronze.erp_loc_a101(
 cid		NVARCHAR(50),
 cntry	NVARCHAR (50)
 )
---erp category
+
  IF OBJECT_ID ('Bronze.erp_px_cat_g1v2', 'U') IS NOT NULL
  DROP TABLE Bronze.erp_px_cat_g1v2;
-
 
 CREATE TABLE Bronze.erp_px_cat_g1v2(
 id			NVARCHAR(50),
@@ -82,7 +80,7 @@ cat			NVARCHAR (50),
 subcat		NVARCHAR (50),
 maintenace	NVARCHAR (50)
 )
--- Bronze.crm_cust_info Bulk Insert
+**-- Bronze.crm_cust_info Bulk Insert**
 TRUNCATE TABLE  Bronze.crm_cust_info;
 BULK INSERT Bronze.crm_cust_info
 FROM 'C:\Users\lenovo\OneDrive\Desktop\SERVER SQL\Data warehouse project\crm\cust_info.csv'
@@ -91,11 +89,9 @@ FIRSTROW = 2,
 FIELDTERMINATOR = ',',
 TABLOCK
 )
---Bronze.crm_cust_info Data Quality checking
 
-SELECT count(*) FROM Bronze.crm_cust_info
+**--Bulk Insert Bronze.crm_prd_info**
 
---Bulk Insert Bronze.crm_prd_info 
 TRUNCATE TABLE  Bronze.crm_prd_info;
 BULK INSERT Bronze.crm_prd_info
 FROM'C:\Users\lenovo\OneDrive\Desktop\SERVER SQL\Data warehouse project\crm\prd_info.csv'
@@ -103,9 +99,8 @@ WITH (
 FIRSTROW = 2,
 FIELDTERMINATOR = ',',
 TABLOCK)
---Bronze.crm_prd_info Data Quality checking
 
-select count(*) from Bronze.crm_prd_info
+**--Bulk Insert Bronze.crm_sales_info**
 
 TRUNCATE TABLE  Bronze.crm_sales_info;
 BULK INSERT Bronze.crm_sales_info
@@ -114,11 +109,9 @@ WITH (
 FIRSTROW = 2,
 FIELDTERMINATOR = ',',
 TABLOCK)
---Bronze.crm_sales_info Data Quality checking
 
-SELECT count(*) FROM Bronze.crm_sales_info
+**-- Bulk Insert Bronze.erp_cust_az12**
 
--- Bulk Insert Bronze.erp_cust_az12
 TRUNCATE TABLE  Bronze.erp_cust_az12;
 BULK INSERT Bronze.erp_cust_az12
 FROM'C:\Users\lenovo\OneDrive\Desktop\SERVER SQL\Data warehouse project\erp\CUST_AZ12.CSV'
@@ -127,12 +120,8 @@ FIRSTROW = 2,
 FIELDTERMINATOR = ',',
 TABLOCK)  
 
+**-- Bulk Insert Bronze.erp_loc_a101**
 
---Bronze.erp_cust_az12 Data Quality checking
-
-SELECT count(*) FROM Bronze.erp_cust_az12
-
--- Bulk Insert Bronze.erp_loc_a101
 TRUNCATE TABLE  Bronze.erp_loc_a101;
 BULK INSERT Bronze.erp_loc_a101
 FROM'C:\Users\lenovo\OneDrive\Desktop\SERVER SQL\Data warehouse project\erp\LOC_A101.CSV'
@@ -141,13 +130,8 @@ FIRSTROW = 2,
 FIELDTERMINATOR = ',',
 TABLOCK)  
 
+**-- Bulk Insert Bronze.erp_px_cat_g1v2**
 
---Bronze.erp_loc_a101 Data Quality checking
-
-SELECT count(*) FROM Bronze.erp_loc_a101
-SELECT * FROM Bronze.erp_loc_a101
-
--- Bulk Insert Bronze.erp_px_cat_g1v2
 TRUNCATE TABLE  Bronze.erp_px_cat_g1v2;
 BULK INSERT Bronze.erp_px_cat_g1v2
 FROM'C:\Users\lenovo\OneDrive\Desktop\SERVER SQL\Data warehouse project\erp\PX_CAT_G1V2.CSV'
@@ -156,7 +140,3 @@ FIRSTROW = 2,
 FIELDTERMINATOR = ',',
 TABLOCK)  
 
-
---Bronze.erp_px_cat_g1v2 Data Quality checking
-
-SELECT count(*) FROM Bronze.erp_px_cat_g1v2;
