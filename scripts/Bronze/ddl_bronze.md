@@ -10,7 +10,7 @@ Run this script to re_define the DDL Structure of 'Bronze Tables
 
 =========================================================================
 */
-
+---
 
 IF OBJECT_ID ('Bronze.crm_cust_info', 'U') IS NOT NULL
 DROP TABLE Bronze.crm_cust_info;
