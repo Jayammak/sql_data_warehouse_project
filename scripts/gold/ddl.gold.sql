@@ -15,11 +15,16 @@ Usage:
 
 ===========================================================================================
 */
---========================================================================================
+
+--=======================================================
 --Create dimention: gold.dim_customers 
---========================================================================================
+--=======================================================
+
+IF OBJECT_ID ('gold.dim_customers', 'V') IS NOT NULL
+DROP VIEW gold.dim_customers
 
 GO
+
 CREATE VIEW gold.dim_customers AS
 SELECT 
 	ROW_NUMBER() OVER (ORDER BY cst_id ) AS customer_key,
@@ -43,6 +48,10 @@ GO
 --========================================================================================
 --Create dimention: gold.dim_products 
 --========================================================================================
+IF OBJECT_ID ('gold.dim_products', 'V') IS NOT NULL
+DROP VIEW gold.dim_products
+
+GO 
 
 CREATE VIEW gold.dim_products AS
 SELECT
@@ -65,7 +74,9 @@ GO
 --========================================================================================
 --Create fact: gold.fact_sales 
 --========================================================================================
-
+IF OBJECT_ID('gold.fact_sales','V') IS NOT NULL
+DROP VIEW gold.fact_sales
+GO
 CREATE VIEW gold.fact_sales AS
 SELECT 
 	si.sls_order_num AS order_number,
