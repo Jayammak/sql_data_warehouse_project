@@ -25,7 +25,7 @@ DROP VIEW gold.dim_customers
 
 GO
 
-CREATE VIEW gold.dim_customers AS
+CREATE VIEW gold.dim_v_customers AS
 SELECT 
 	ROW_NUMBER() OVER (ORDER BY cst_id ) AS customer_key,
 	ci.cst_id AS customer_id,
@@ -53,7 +53,7 @@ DROP VIEW gold.dim_products
 
 GO 
 
-CREATE VIEW gold.dim_products AS
+CREATE VIEW gold.dim_v_products AS
 SELECT
 	ROW_NUMBER() OVER(ORDER BY prd_start_date,prd_key) AS product_key,
 	pn.prd_id AS product_id,
@@ -77,7 +77,7 @@ GO
 IF OBJECT_ID('gold.fact_sales','V') IS NOT NULL
 DROP VIEW gold.fact_sales
 GO
-CREATE VIEW gold.fact_sales AS
+CREATE VIEW gold.fact_v_sales AS
 SELECT 
 	si.sls_order_num AS order_number,
 	gp.product_key,
@@ -89,7 +89,8 @@ SELECT
 	si.sls_quantity AS quantity,
 	si.sls_price AS price
 FROM Silver.crm_sales_info si
-LEFT JOIN Gold.dim_products gp 
+LEFT JOIN Gold.dim_v_products gp 
 ON si.sls_prd_key = gp.Product_number
-LEFT JOIN Gold.dim_customers gc
+LEFT JOIN Gold.dim_v_customers gc
 ON si.sls_cust_id = gc.customer_id
+
