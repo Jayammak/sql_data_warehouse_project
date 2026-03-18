@@ -40,10 +40,6 @@ SELECT cst_firstname
 FROM silver.crm_cust_info
 WHERE cst_firstname!= TRIM(cst_firstname) 
 
-SELECT cst_lastname 
-FROM silver.crm_cust_info
-WHERE cst_lastname!= TRIM(cst_lastname)
-
 --Check the consistency of values in low cardinality columns
 SELECT DISTINCT cst_gender
 FROM silver.crm_cust_info
@@ -58,9 +54,6 @@ SELECT prd_nm
 FROM silver.crm_prd_info
 WHERE prd_nm!= TRIM(prd_nm) 
 
-SELECT prd_nm 
-FROM Silver.crm_prd_info
-WHERE prd_nm!= TRIM(prd_nm) 
 
 --Check for NULLs or Negative Numbers
 --Expectation: No result
@@ -68,25 +61,16 @@ SELECT prd_cost
 FROM silver.crm_prd_info
 WHERE prd_cost < 0 OR prd_cost IS NULL
 
-SELECT prd_cost 
-FROM Silver.crm_prd_info
-WHERE prd_cost < 0 OR prd_cost IS NULL
- 
 --Check the consistency of values in low cardinality columns
 SELECT DISTINCT prd_line
 FROM silver.crm_prd_info
 
-SELECT DISTINCT prd_line
-FROM Silver.crm_prd_info
- 
+
 --Check for invalid date orders
 SELECT prd_id,prd_key,prd_nm,prd_start_date,prd_end_date,
 CAST(LEAD(prd_start_date) OVER (PARTITION BY prd_key ORDER BY prd_start_date)-1 AS DATE) as prd_end_date
 FROM silver.crm_prd_info
 
-SELECT prd_id,prd_key,prd_nm,prd_start_date,
-CAST(LEAD(prd_start_date) OVER (PARTITION BY prd_key ORDER BY prd_start_date)-1 AS DATE) as prd_end_date
-FROM Silver.crm_prd_info
 
 --==================================================================================
 --Checking: silver.crm_sales_info
