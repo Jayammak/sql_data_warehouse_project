@@ -95,6 +95,10 @@ OR LEN(sls_order_date) !=8
 OR sls_order_date <19000101 
 OR sls_order_date > 20500101 
 
+select sls_order_date
+from Silver.crm_sales_info
+where sls_order_date is null  -- (Cleaned Final)
+
 SELECT NULLIF(sls_ship_date,0) sls_ship_date
 FROM Silver.crm_sales_info
 WHERE sls_ship_date <= 0
@@ -102,12 +106,21 @@ OR LEN(sls_ship_date) !=8
 OR sls_ship_date <19000101 
 OR sls_ship_date > 20500101 
 
+select sls_ship_date
+from Silver.crm_sales_info
+where sls_ship_date is null  -- (Cleaned Final)
+
 SELECT NULLIF(sls_due_date,0) sls_due_date
 FROM silver.crm_sales_info
 WHERE sls_due_date <= 0
 OR LEN(sls_due_date) !=8 
 OR sls_due_date <19000101 
 OR sls_due_date > 20500101 
+
+select sls_due_date
+from Silver.crm_sales_info
+where sls_due_date is null  -- (Cleaned Final)
+
 
 -- check invalid date orders
 SELECT * 
